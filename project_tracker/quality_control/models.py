@@ -28,3 +28,28 @@ class BugReport(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
+class FeatureRequest(models.Model):
+
+    status = [
+        ('Review', 'Рассмотрение'),
+        ('Accepted', 'Принято'),
+        ('Denied', 'Отклонено'),
+    ]
+
+    project = models.ForeignKey(
+        Project,
+        related_name='feature_request',
+        on_delete=models.CASCADE
+    )
+
+    task = models.ForeignKey(
+        Task,
+        on_delete=models.SET_NULL,
+        null=True
+    )
+
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    priority = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
