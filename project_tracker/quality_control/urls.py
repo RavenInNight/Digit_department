@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 
+app_name = 'quality_control'
+
 urlpatterns = [
     path('', views.index, name='index'),
     path('bugs/', views.bug_list, name='bug_list'),
