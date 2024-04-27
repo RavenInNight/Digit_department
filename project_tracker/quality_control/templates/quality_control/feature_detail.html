@@ -1,0 +1,13 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <h1>Запрос на улучшение {{ feature.id }}</h1>
+    <p>Название: {{ feature.title }}</p>
+    <p>Описание: {{ feature.description }}</p>
+
+    <h2>Информация о запросе</h2>
+    <p>Приоритет: {{ feature.priority }}</p>
+    <p>Статус: {{ feature.status }}</p>
+    <p>Дата создания: {{ feature.created_at }}</p>
+    <p>Дата последнего редактирования: {{ feature.updated_at }}</p>
+{% endblock %}

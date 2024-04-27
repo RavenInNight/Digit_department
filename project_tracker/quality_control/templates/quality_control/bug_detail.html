@@ -1,0 +1,14 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <h1>Детали бага {{ bug.id }}</h1>
+    <p>Название: {{ bug.title }}</p>
+    <p>Описание: {{ bug.description }}</p>
+
+    <h2>Информация о баге</h2>
+    <p>Статус: {{ bug.status }}</p>
+    <p>Дата создания: {{ bug.created_at }}</p>
+    <p>Дата последнего редактирования: {{ bug.updated_at }}</p>
+{% endblock %}
+
+

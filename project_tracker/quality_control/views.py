@@ -1,30 +1,28 @@
 from django.http import HttpResponse
 from django.urls import reverse
+from django.shortcuts import render, get_object_or_404
+from .models import BugReport, FeatureRequest
 
 #Function-Based Views
 def index(request):
-    bug_list_url = reverse('quality_control:bug_list')
-    feature_list_url = reverse('quality_control:feature_list')
-    html = f"<h1>Система контроля качества</h1>" \
-           f"<a href='{bug_list_url}'>Список всех багов</a>" \
-           f"<br/><a href='{feature_list_url}'>Запросы на улучшение</a>"
-    return HttpResponse(html)
+    return render(request, 'quality_control/index.html')
 
 def bug_list(request):
-    html = f"<h1>Cписок отчетов об ошибках</h1>"
-    return HttpResponse(html)
+    bugs = BugReport.objects.all()
+    return render(request, 'quality_control/bug_list.html', {'bug_list': bugs})
 
 def feature_list(request):
-    html = f"<h1>Список запросов на улучшение</h1>"
-    return HttpResponse(html)
+    features = FeatureRequest.objects.all()
+    return render(request, 'quality_control/feature_list.html', {'feature_list': features})
 
 def bug_detail(request, bug_id):
-    html = f"<h1>Детали бага {bug_id}</h1>"
-    return HttpResponse(html)
+    bug = get_object_or_404(BugReport, id=bug_id)
+    return render(request, 'quality_control/bug_detail.html', {'bug': bug})
 
 def feature_detail(request, feature_id):
-    html = f"<h1>Детали улучшения {feature_id}</h1>"
-    return HttpResponse(html)
+    feature = get_object_or_404(BugReport, id=feature_id)
+    return render(request, 'quality_control/feature_detail.html', {'feature': feature})
+
 
 
 #Class-Based Views
