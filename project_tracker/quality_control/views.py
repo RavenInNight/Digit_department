@@ -1,5 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import BugReport, FeatureRequest
+from .forms import BugReportForm, FeatureRequestForm
+from django.urls import reverse
 
 #Function-Based Views
 def index(request):
@@ -20,6 +22,27 @@ def bug_detail(request, bug_id):
 def feature_detail(request, feature_id):
     feature = get_object_or_404(BugReport, id=feature_id)
     return render(request, 'quality_control/feature_detail.html', {'feature': feature})
+
+def bug_report_create(request):
+    if request.method == 'POST':
+        form = BugReportForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('quality_control:index'))
+    else:
+        form = BugReportForm()
+    return render(request, 'quality_control/bug_report_form.html', {'form': form})
+
+def feature_request_create(request):
+    if request.method == 'POST':
+        form = FeatureRequestForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('quality_control:index'))
+    else:
+        form = FeatureRequestForm()
+    return render(request, 'quality_control/feature_request_form.html', {'form': form})
+
 
 
 

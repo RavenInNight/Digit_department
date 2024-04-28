@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Project, Task
 from .forms import FeedbackForm, ProjectForm, TaskForm
 from django.core.mail import send_mail
+from django.urls import reverse
 
 def index(request):
     return render(request, 'tasks/index.html')
@@ -31,7 +32,7 @@ def feedback_view(request):
 
             send_mail(subject, message, email, recipients)
 
-            return redirect('tasks')
+            return redirect(reverse('tasks:index'))
     else:
         form = FeedbackForm()
     return render(request, 'tasks/feedback.html', {'form': form})
@@ -41,7 +42,7 @@ def create_project(request):
         form = ProjectForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('tasks:projects_list')
+            return redirect(reverse('tasks:index'))
     else:
         form = ProjectForm()
     return render(request, 'tasks/project_create.html', {'form': form})

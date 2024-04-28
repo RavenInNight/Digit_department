@@ -10,6 +10,8 @@ urlpatterns = [
     path('features/', views.feature_list, name='feature_list'),
     path('bugs/<int:bug_id>/', views.bug_detail, name='bug_detail'),
     path('features/<int:feature_id>/', views.feature_detail, name='feature_detail'),
+    path('bug_form/', views.bug_report_create, name='bug_report_create'),
+    path('feature_from/', views.feature_request_create, name='feature_request_create'),
 ]
 
 #Class-Based Views
