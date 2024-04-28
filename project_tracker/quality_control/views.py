@@ -20,7 +20,7 @@ def bug_detail(request, bug_id):
     return render(request, 'quality_control/bug_detail.html', {'bug': bug})
 
 def feature_detail(request, feature_id):
-    feature = get_object_or_404(BugReport, id=feature_id)
+    feature = get_object_or_404(FeatureRequest, id=feature_id)
     return render(request, 'quality_control/feature_detail.html', {'feature': feature})
 
 def bug_report_create(request):
@@ -42,6 +42,39 @@ def feature_request_create(request):
     else:
         form = FeatureRequestForm()
     return render(request, 'quality_control/feature_request_form.html', {'form': form})
+
+def update_bug(request, bug_id):
+    bug = get_object_or_404(BugReport, pk=bug_id)
+    if request.method == 'POST':
+        form = BugReportForm(request.POST, instance=bug)
+        if form.is_valid():
+            form.save()
+            return redirect('quality_control:bug_detail', bug_id=bug.id)
+    else:
+        form = BugReportForm(instance=bug)
+    return render(request, 'quality_control/bug_update.html', {'form': form, 'bug': bug})
+
+def update_feature(request, feature_id):
+    feature = get_object_or_404(FeatureRequest, pk=feature_id)
+    if request.method == 'POST':
+        form = FeatureRequestForm(request.POST, instance=feature)
+        if form.is_valid():
+            form.save()
+            return redirect('quality_control:feature_detail', feature_id=feature.id)
+    else:
+        form = FeatureRequestForm(instance=feature)
+    return render(request, 'quality_control/feature_update.html', {'form': form, 'feature': feature})
+
+def delete_bug(request, bug_id):
+    bug = get_object_or_404(BugReport, pk=bug_id)
+    bug.delete()
+    return redirect('quality_control:bug_list')
+
+def delete_feature(request, feature_id):
+    feature = get_object_or_404(FeatureRequest, pk=feature_id)
+    feature.delete()
+    return redirect('quality_control:feature_list')
+
 
 
 

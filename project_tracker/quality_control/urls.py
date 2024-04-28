@@ -12,6 +12,10 @@ urlpatterns = [
     path('features/<int:feature_id>/', views.feature_detail, name='feature_detail'),
     path('bug_form/', views.bug_report_create, name='bug_report_create'),
     path('feature_from/', views.feature_request_create, name='feature_request_create'),
+    path('bugs/<int:bug_id>/update/', views.update_bug, name='update_bug'),
+    path('features/<int:feature_id>/update/', views.update_feature, name='update_feature'),
+    path('bugs/<int:bug_id>/delete/', views.delete_bug, name='delete_bug'),
+    path('features/<int:feature_id>/delete/', views.delete_feature, name='delete_feature'),
 ]
 
 #Class-Based Views

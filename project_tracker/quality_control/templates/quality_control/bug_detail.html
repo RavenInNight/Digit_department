@@ -5,6 +5,10 @@
     <p>Название: {{ bug.title }}</p>
     <p>Описание: {{ bug.description }}</p>
 
+    <p><a href="{% url 'quality_control:update_bug' bug.id %}">Изменить баг</a></p>
+    <p><a href="{% url 'quality_control:delete_bug' bug.id %}"onclick="return confirm('Вы уверены, что хотите удалить этот баг?');">Удалить баг</a></p>
+
+
     <h2>Информация о баге</h2>
     <p>Статус: {{ bug.status }}</p>
     <p>Дата создания: {{ bug.created_at }}</p>
