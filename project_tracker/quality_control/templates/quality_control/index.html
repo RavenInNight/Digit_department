@@ -3,8 +3,8 @@
 {% block content %}
         <h1>Система контроля качества</h1>
         <a href="{% url 'quality_control:bug_list' %}">Список всех багов</a></br>
-        <a href="{% url 'quality_control:bug_report_create' %}">Создать отчет об ошибке</a></br>
+        <a href="{% url 'quality_control:bug_create' %}">Создать отчет об ошибке</a></br>
         </br>
         <a href="{% url 'quality_control:feature_list' %}">Список запросов на улучшение</a></br>
-        <a href="{% url 'quality_control:feature_request_create' %}">Создать запрос на улучшение</a>
+        <a href="{% url 'quality_control:feature_create' %}">Создать запрос на улучшение</a>
 {% endblock %}

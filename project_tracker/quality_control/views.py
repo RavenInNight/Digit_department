@@ -82,9 +82,11 @@ def delete_feature(request, feature_id):
 #Class-Based Views
 
 # from django.views import View
-# from django.views.generic import ListView, DetailView
+# from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 # from django.shortcuts import render
 # from .models import BugReport, FeatureRequest
+# from .forms import BugReportForm, FeatureRequestForm
+# from django.urls import reverse, reverse_lazy
 #
 # class IndexView(View):
 #     def get(self, request, *args, **kwargs):
@@ -107,6 +109,44 @@ def delete_feature(request, feature_id):
 #     model = FeatureRequest
 #     pk_url_kwarg = 'feature_id'
 #     template_name = 'quality_control/feature_detail.html'
+#
+# class BugCreateView(CreateView):
+#     model = BugReport
+#     form_class = BugReportForm
+#     template_name = 'quality_control/bug_create.html'
+#     success_url = reverse_lazy('quality_control/:projects_list')
+#
+# class FeatureCreateView(CreateView):
+#     model = FeatureRequest
+#     form_class = FeatureRequestForm
+#     template_name = 'quality_control/feature_create.html'
+#     success_url = reverse_lazy('quality_control/:feature_list')
+#
+# class BugUpdateView(UpdateView):
+#     model = BugReport
+#     form_class = BugReportForm
+#     template_name = 'quality_control/bug_update.html'
+#     pk_url_kwarg = 'bug_id'
+#     success_url = reverse_lazy('quality_control:bug_list')
+#
+# class FeatureUpdateView(UpdateView):
+#     model = FeatureRequest
+#     form_class = FeatureRequestForm
+#     template_name = 'quality_control/feature_update.html'
+#     pk_url_kwarg = 'feature_id'
+#     success_url = reverse_lazy('quality_control:feature_list')
+#
+# class BugDeleteView(DeleteView):
+#     model = BugReport
+#     pk_url_kwarg = 'bug_id'
+#     success_url = reverse_lazy('quality_control:bug_list')
+#     template_name = 'quality_control/bug_confirm_delete.html'
+#
+# class FeatureDeleteView(DeleteView):
+#     model = FeatureRequest
+#     pk_url_kwarg = 'feature_id'
+#     success_url = reverse_lazy('quality_control:feature_list')
+#     template_name = 'quality_control/feature_confirm_delete.html'
 
 
 
